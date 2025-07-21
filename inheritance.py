@@ -8,5 +8,5 @@ grade = input("Enter student's grade: ")
 # Display the student details
 print("\n--- Student Details ---")
 print("Name:", name)
-print("Age:", age)
+print("Age:", 21)
 print("Grade:", grade)
