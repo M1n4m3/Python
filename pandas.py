@@ -1,40 +1,26 @@
-import pandas as pd
 
-# 1. Creating a DataFrame from a dictionary
-data = {
-    'Name': ['Alice', 'Bob', 'Charlie', 'David'],
-    'Age': [24, 27, 22, 32],
-    'City': ['New York', 'Los Angeles', 'Chicago', 'Houston']
-}
 
-df = pd.DataFrame(data)
+# Base class for machine learning models
+class MLModel:
+    def __init__(self):
+        self.model = None
 
-# 2. Display the DataFrame
-print("DataFrame:")
-print(df)
+    def train(self, X, y):
+        raise NotImplementedError("Subclass must implement train method.")
 
-# 3. Accessing columns
-print("\nNames:")
-print(df['Name'])
+    def predict(self, X):
+        raise NotImplementedError("Subclass must implement predict method.")
 
-# 4. Basic statistics
-print("\nBasic Statistics:")
-print(df.describe())
+    def evaluate(self, X, y):
+        predictions = self.predict(X)
+        mse = mean_squared_error(y, predictions)
+        print("Mean Squared Error:", mse)
 
-# 5. Filtering data
-print("\nPeople older than 25:")
-print(df[df['Age'] > 25])
+# Derived class for Linear Regression
+class LinearRegressionModel(MLModel):
+    def __init__(self):
+        super().__init__()
+        self.model = LinearRegression()
 
-# 6. Adding a new column
-df['Salary'] = [50000, 60000, 45000, 70000]
-print("\nDataFrame with Salary column:")
-print(df)
-
-# 7. Saving to a CSV file
-df.to_csv('people.csv', index=False)
-print("\nDataFrame saved to 'people.csv'")
-
-# 8. Reading from a CSV file
-df_loaded = pd.read_csv('people.csv')
-print("\nData loaded from CSV:")
-print(df_loaded)
+    
+       
